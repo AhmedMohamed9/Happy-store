@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7aaec323b844570b128bef59c5b09c4" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreModel.Category" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Order" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Order_details" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Product" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Shoping_Cart" Width="1.5" PointX="9.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Sub_Category" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="StoreModel.FK_Sub_Category_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreModel.FK_Order_details_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreModel.FK_Order_details_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreModel.FK_Products_Sub_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreModel.FK_Shoping_Cart_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StoreModel.fact" Width="1.5" PointX="3.375" PointY="6.875" />
+        <AssociationConnector Association="StoreModel.FK_Categories_fact" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

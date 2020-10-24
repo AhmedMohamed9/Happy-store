@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Happystore.Models.fact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="text-center head" >المصانع</h1>
+
+<p>
+    @Html.ActionLink("أضافة مصنع", "Create",null,new {@class= "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.id }, new { @class = "btn btn-primary" }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("حذف", "Delete", new { id=item.id },new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
