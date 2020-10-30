@@ -12,6 +12,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Fac_id" Type="int" Nullable="false" />
+          <Property Name="Orde_num" Type="int" />
         </EntityType>
         <EntityType Name="fact">
           <Key>
@@ -219,6 +220,7 @@
           <Property Name="Fac_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sub_Category" Relationship="Self.FK_Sub_Category_Categories" FromRole="Categories" ToRole="Sub_Category" />
           <NavigationProperty Name="fact" Relationship="StoreModel.FK_Categories_fact" FromRole="Category" ToRole="fact" />
+          <Property Name="Orde_num" Type="Int32" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -229,7 +231,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Total_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="user_id" Type="String" Nullable="false" />
+          <Property Name="user_id" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="MEssage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order_details" Relationship="Self.FK_Order_details_Order" FromRole="Order" ToRole="Order_details" />
@@ -432,6 +434,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="StoreModel.Category">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Orde_num" ColumnName="Orde_num" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Fac_id" ColumnName="Fac_id" />

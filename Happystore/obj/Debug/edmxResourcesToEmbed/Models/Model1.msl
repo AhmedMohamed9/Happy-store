@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="StoreModel.Category">
         <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Orde_num" ColumnName="Orde_num" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Fac_id" ColumnName="Fac_id" />

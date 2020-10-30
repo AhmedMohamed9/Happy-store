@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Happystore.Models.Product>
+
+@{
+    ViewBag.Title = "المنتجات";
+}
+
+<h2 class="head">المنتجات</h2>
+
+<p>
+    @Html.ActionLink("أضافة منتج جديد", "Create",null,new {@class="btn btn-success" })
+</p>
+<table class="table t">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Need_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Need_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sub_Category.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+       
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Need_image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Need_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sub_Category.Name)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.id },new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.id}, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

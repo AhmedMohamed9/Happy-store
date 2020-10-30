@@ -23,6 +23,7 @@ namespace Happystore.Models
         public int id { get; set; }
         public string Name { get; set; }
         public int Fac_id { get; set; }
+        public int Orde_num { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sub_Category> Sub_Category { get; set; }

@@ -101,8 +101,8 @@ D:\projects\Happy Stroe Project\Happystore\Happystore\bin\Microsoft.Owin.Securit
 D:\projects\Happy Stroe Project\Happystore\Happystore\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\projects\Happy Stroe Project\Happystore\Happystore\bin\Microsoft.Owin.Security.OAuth.xml
 D:\projects\Happy Stroe Project\Happystore\Happystore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.csprojAssemblyReference.cache
 D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.csproj.CoreCompileInputs.cache
 D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.csproj.CopyComplete
 D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.dll
 D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.pdb
+D:\projects\Happy Stroe Project\Happystore\Happystore\obj\Debug\Happystore.csprojAssemblyReference.cache

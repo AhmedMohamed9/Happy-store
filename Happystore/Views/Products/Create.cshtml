@@ -1,0 +1,137 @@
+﻿@model Happystore.Models.Product
+
+@{
+    ViewBag.Title = "إضافة منتج";
+}
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+<h2 class="text-center head">إضافة منتج</h2>
+
+
+@using (Html.BeginForm("create", "products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal col-md-offset-4 col-xs-offset-2">
+    <div class="alert alert-danger" id="alert-div" style="display:none">
+        <span id="err-view">
+
+        </span>
+    </div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2 lab " })
+        <div class="col-md-10 ">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control frm ", required = "required" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control frm", required = "required", @type = "number", step = "any", @min = "1" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control frm", required = "required" } })*@
+            <input type="file" name="upload" id="img" class="form-control frm" required />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control frm", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Video, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sub_Categorie_id, "القسم", htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-10">
+            @Html.DropDownList("Sub_Categorie_id", null, htmlAttributes: new { @class = "form-control frm", required = "required" })
+            @Html.ValidationMessageFor(model => model.Sub_Categorie_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discription, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Discription, new { htmlAttributes = new { @class = " frm", @id = "Discription", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Discription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Need_image, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-2">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Need_image)
+                @Html.ValidationMessageFor(model => model.Need_image, "", new { @class = "text-danger frm" })
+            </div>
+        </div>
+
+        @Html.LabelFor(model => model.Need_Name, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Need_Name)
+                @Html.ValidationMessageFor(model => model.Need_Name, "", new { @class = "text-danger frm" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="إضافة" id="ss" class="btn btn-success btn-lg form-control" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("الرجوع للقائمة", "Index", null, new { @class = "back" })
+</div>
+<script>
+    CKEDITOR.replace("Discription");
+</script>
+@section scripts{
+    <script>
+
+        $(function () {
+            //check if the input is empty
+            $("#ss").click(function () {
+                if ($("#img").val() == '') {
+                    //$("#alert-div").fadeIn();
+                    
+                    //$("#err-view").append(" برجاء اختيار صورة");
+                    alert("برجاء اختيار صورة")
+
+                    return false;
+                }
+                //check if the image extension is valid
+                var filename = document.getElementById("img").value;
+                var excetantion = filename.substr(filename.lastIndexOf('.') + 1);
+                var validexc = ['jpg', 'png', 'gif', 'bmp'];
+                if ($.inArray(excetantion, validexc) == -1) {
+                    //$("#alert-div").fadeIn();
+                    //$("#err-view").append(" برجاء اختيار نوع صحيح للصورة");
+                    alert("برجاء اختيار نوع صحيح للصورة")
+                    return false;
+                }
+                //check if the image size is valid (2m)
+                var myfilesize = document.getElementById("img").files[0].size / 1024 / 1024;
+                if (myfilesize > 2) {
+                    //$("#alert-div").fadeIn();
+                    //$("#err-view").append("برجاء اختيار حجم للصورة اقل من 2 ميجا");
+                    alert("برجاء اختيار حجم للصورة اقل من 2 ميجا")
+                    return false;
+                }
+            })
+        })
+    </script>
+
+}

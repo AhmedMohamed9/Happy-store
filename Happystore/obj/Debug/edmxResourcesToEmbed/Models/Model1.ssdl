@@ -7,6 +7,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Fac_id" Type="int" Nullable="false" />
+    <Property Name="Orde_num" Type="int" />
   </EntityType>
   <EntityType Name="fact">
     <Key>

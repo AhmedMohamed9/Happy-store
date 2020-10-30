@@ -1,0 +1,154 @@
+﻿@model Happystore.Models.Product
+
+@{
+    ViewBag.Title = "تعديل";
+}
+
+<h2 class="text-center head">تعديل المنتج</h2>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<div class="row">
+    <div class="col-md-7">
+
+
+
+        @using (Html.BeginForm("edit", "products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                @Html.HiddenFor(model => model.Image)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control frm" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discription, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Discription, new { htmlAttributes = new { @class = "form-control frm", @id = "Discription" } })
+                        @Html.ValidationMessageFor(model => model.Discription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control frm" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        <input type="file" name="upload" id="Image"  class="form-control frm"  />
+                        @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control frm" } })
+                        @Html.ValidationMessageFor(model => model.Video, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sub_Categorie_id, "القسم الفرعى", htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Sub_Categorie_id", null, htmlAttributes: new { @class = "form-control frm" })
+                        @Html.ValidationMessageFor(model => model.Sub_Categorie_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Need_image, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Need_image)
+                            @Html.ValidationMessageFor(model => model.Need_image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.LabelFor(model => model.Need_Name, htmlAttributes: new { @class = "control-label col-md-2 lab" })
+                    <div class="col-md-1">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Need_Name)
+                            @Html.ValidationMessageFor(model => model.Need_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="تعديل" class="btn btn-primary form-control" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+        <div class="col-md-4 col-lg-offset-1 col-xs-12">
+            <img src="~/upload/@Model.Image" class=" im img-thumbnail img-responsive" style="width:100%;border-radius:20px" />
+        </div>
+        <div class="col-md-4 col-lg-offset-1 col-xs-12">
+            <iframe src="https://www.youtube.com/embed/@Model.Video?rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    style="width:100%;height:400px"
+                    allowfullscreen></iframe>
+        </div>
+   
+</div>
+<div class="row">
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "back" })
+    </div>
+    </div>
+    <script>
+        CKEDITOR.replace("Discription");
+    </script>
+    @section scripts{
+        <script>
+
+            $(function () {
+                //check if the input is empty
+                $("#ss").click(function () {
+                    if ($("#Image").val() == '') {
+                        $("#alert-div").fadeIn();
+
+                        $("#err-view").append(" برجاء اختيار صورة");
+
+                        return false;
+                    }
+                    //check if the image extension is valid
+                    var filename = document.getElementById("Image").value;
+                    var excetantion = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validexc = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(excetantion, validexc) == -1) {
+                        $("#alert-div").fadeIn();
+                        $("#err-view").append(" برجاء اختيار نوع صحيح للصورة");
+                        return false;
+                    }
+                    //check if the image size is valid (2m)
+                    var myfilesize = document.getElementById("Image").files[0].size / 1024 / 1024;
+                    if (myfilesize > 2) {
+                        $("#alert-div").fadeIn();
+                        $("#err-view").append("برجاء اختيار حجم للصورة اقل من 2 ميجا");
+                        return false;
+                    }
+                })
+            })
+        </script>
+
+    }
